@@ -33,7 +33,7 @@ export default function Component() {
   
   return (
     (loading) ? <div></div> :
-    <div className="flex h-screen w-full px-0 bg-[#4b4b4b] text-[#333]">
+    <div className="flex h-screen w-full px-0 bg-[#4b4b4b] text-[#333] sm:px-32">
       <Sidebar chatWithFriend={handleSubmit} showChat={showChat}/>
       {(friendId === -1) ? (
         <div className={`flex-1 flex bg-gray-200 items-center justify-center ${(!showChat) ? "hidden sm:block" : "block"}`}>
