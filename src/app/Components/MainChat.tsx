@@ -109,20 +109,20 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
   return (
     <div className={`flex-1 flex flex-col bg-white ${(!showChat) ? "hidden sm:block" : "block"}`}>
       {/* Back button for mobile */}
-      <div className="border-b border-[#ddd] bg-white flex justify-between items-center h-16 px-6 py-12">
+      <div className="border-b border-[#ddd] bg-white flex justify-between items-center h-16 px-6 py-10 sm:py-12">
         <div className="flex">
         <button onClick={onBack} className="sm:hidden mr-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
-        <Avatar className="w-14 h-14 rounded-full mr-3">
+        <Avatar className="w-12 h-12 sm:w-14 sm:h-14 rounded-full mr-3">
           <AvatarImage src="/placeholder-user.jpg" alt="User Avatar" />
-          <AvatarFallback className="font-bold text-2xl bg-red-300">{friendName[0].toUpperCase()}</AvatarFallback>
+          <AvatarFallback className="font-bold sm:font-bold text-lg sm:text-2xl bg-red-300">{friendName[0].toUpperCase()}</AvatarFallback>
         </Avatar>
         <div>
-          <div className="font-extrabold text-2xl">{friendName}</div>
-          <div className="text-xl text-[#8d8b8b]">
+          <div className="font-bold sm:font-extrabold text-lg sm:text-2xl">{friendName}</div>
+          <div className="text-base sm:text-xl text-[#8d8b8b]">
             {isTyping ? 'Typing...' : 'Online'}
           </div>
         </div>
@@ -139,11 +139,10 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
           </button>
  
           {isOpen && (
-            <div className="origin-top-right absolute right-0 mt-2 w-60 shadow-xl rounded-xl bg-orange-400 focus:outline-none">
-              <div className="py-1">
+            <div className="origin-top-right absolute right-0 mt-2 w-40 rounded-xl bg-orange-400 focus:outline-none">
                
                 <button
-                  className="block px-4 py-3 text-xl font-semibold bg-red-500  text-white hover:bg-red-600 w-full text-left"
+                  className="block px-4 py-3 text-lg sm:text-xl rounded-xl font-medium sm:font-semibold bg-red-500  text-white hover:bg-red-600 w-full text-left"
                   onClick={() => {
                     localStorage.removeItem('user');
                     localStorage.removeItem('token');
@@ -158,7 +157,6 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
                 >
                   LOGOUT
                 </button>
-              </div>
         </div>
       )}
     </div>
@@ -188,8 +186,8 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
                 message.type === "sent" ? "bg-[#e36d3e] text-white" : "bg-[#f0f0f0] "
               }`}
             >
-              <div className="font-normal mb-1">{ message.type === "sent" ? "YOU" : friendName.toUpperCase()}</div>
-              <div className="font-semibold text-lg">{message.content}</div>
+              <div className="font-normal text-sm sm:text-base mb-1">{ message.type === "sent" ? "YOU" : friendName.toUpperCase()}</div>
+              <div className="font-medium sm:font-semibold text-sm sm:text-lg">{message.content}</div>
             </div>
           </div>
         ))}
@@ -201,22 +199,22 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
       
       </div>
 
-      <div className="border-t border-[#ddd] bg-white flex items-center gap-4 h-24 px-10 py-3">
+      <div className="border-t border-[#ddd] bg-white flex items-center gap-4 h-20 sm:h-24 px-5 sm:px-10 py-1 sm:py-3">
         <form onSubmit={handleSubmit} className="flex items-center gap-4 w-full">
           <Input
             type="text"
             placeholder="Type your message"
             value={messageText}
             onChange={handleInputChange}
-            className="bg-[#ededed] rounded-xl text-gray-950 px-4 py-4 text-xl h-16 border-none outline-none focus:border-none focus:ring-0 flex-1"
+            className="bg-[#ededed] rounded-xl text-gray-950 px-4 py-4 text-base sm:text-xl h-12 sm:h-16 border-none outline-none focus:border-none focus:ring-0 flex-1"
           />
           <button className="rounded-xl p-2 bg-orange-300 hover:bg-orange-300">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-9">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 sm:size-9">
               <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
             </svg>
           </button>
           <button  className="rounded-xl p-2 bg-orange-300 hover:bg-orange-300" type="submit">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-9">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 sm:size-9">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
             </svg>
           </button>

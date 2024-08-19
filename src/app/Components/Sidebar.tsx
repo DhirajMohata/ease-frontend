@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { getFriends } from '../services/friendships';
-import AddFriendPopup from './AddFriendPopup'; // Import the popup component
+import AddFriendPopup from './AddFriendPopup';
 
 interface SidebarProps {
   chatWithFriend: (friendId: number, friendName: string) => void;
@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ chatWithFriend, showChat }) => {
   }>>([]);
   const [showAddFriendPopup, setShowAddFriendPopup] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -83,21 +83,21 @@ const Sidebar: React.FC<SidebarProps> = ({ chatWithFriend, showChat }) => {
     friend.friendName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const buttons = ['All', 'Unread', 'Archived', 'Blocked'];
+  const buttons = ['All', 'Archived', 'Blocked'];
 
   const chatItems = (id: number, lastSeenAt: Date ,  friendId: number, name: string, message: string) => (
     <a
       href="#"
       key={id.toString()}
-      className={`flex p-3 border border-solid border-gray-300 items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-200 ${
-        activeChat === id.toString() ? 'bg-gray-200 border-l-8 border-l-orange-500' : 'hover:bg-[#e0e0e0]'
+      className={`flex p-2 sm:p-3 border border-solid border-gray-300 items-center gap-4 px-4 py-3 rounded-lg transition-colors duration-200 ${
+        activeChat === id.toString() ? 'bg-gray-200 border-l-4 sm:border-l-8 border-l-orange-500' : 'hover:bg-[#e0e0e0]'
       }`}
       onClick={() => {
         setActiveChat(id.toString());
         chatWithFriend(friendId, name);
       }}
     >
-      <div className="w-12 h-12">
+      <div className="h-9 w-9 sm:w-12 sm:h-12">
         <svg
           fill="none"
           strokeWidth="1.5"
@@ -115,10 +115,10 @@ const Sidebar: React.FC<SidebarProps> = ({ chatWithFriend, showChat }) => {
       </div>
       <div className="flex-1 overflow-hidden">
         <div className="flex justify-between items-center">
-          <div className="font-semibold text-xl text-gray-800">{name.toUpperCase()}</div>
-          <div className="text-lg text-gray-500">{formatLastSeen(lastSeenAt)}</div>
+          <div className="font-medium sm:font-semibold text-lg sm:text-xl text-gray-800">{name.toUpperCase()}</div>
+          <div className="text-xs sm:text-lg text-gray-500">{formatLastSeen(lastSeenAt)}</div>
         </div>
-        <div className="text-lg text-gray-600 truncate">{message}</div>
+        <div className="text-sm sm:text-lg text-gray-600 truncate">{message}</div>
       </div>
     </a>
   );
