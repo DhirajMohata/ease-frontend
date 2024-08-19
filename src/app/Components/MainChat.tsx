@@ -193,7 +193,7 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
           </div>
         ))}
         <div>
-          {(messages.length === 0) ? <div className="text-center text-xl font-bold text-gray-500">Let's Start The Conversation 😊</div> : <div></div>}
+          {(messages.length === 0) ? (<div className="text-center text-xl font-bold text-gray-500">Let's Start The Conversation 😊</div> ): (<div></div>)}
         </div>
         </div>
       )}

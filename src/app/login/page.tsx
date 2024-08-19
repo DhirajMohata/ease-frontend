@@ -50,8 +50,8 @@ export default function Component() {
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight text-[#333]">Sign in to your account</h1>
             <p className="mt-2 text-sm text-[#666]">
-              Don't have an account?{" "}
-              <a href="/signup" className="font-medium text-[#ffa500] hover:underline" >
+              Don't have an account?
+              <a href="/signup" className="font-medium ml-2 text-[#ffa500] hover:underline" >
                 Sign up
               </a>
             </p>
