@@ -8,8 +8,8 @@ import { login } from '../services/user';
 import { toast } from 'react-hot-toast';
 
 export default function Component() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('example@gmail.com');
+  const [password, setPassword] = useState('Example@123');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -65,6 +65,7 @@ export default function Component() {
                 <Input
                   id="email"
                   type="email"
+                  defaultValue={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="m@example.com"
                   required
@@ -80,6 +81,7 @@ export default function Component() {
                 <Input
                   id="password"
                   type="password"
+                  defaultValue={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   required
