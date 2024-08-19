@@ -37,14 +37,16 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
 
   useEffect(() => {
     socket.on('receiveMessage', (messageData) => {
-      if(localStorage.getItem('user') === messageData.friendName && friendId === messageData.userId)
+      console.log(messageData);
+      if(localStorage.getItem('user') === messageData.friendName && friendName === messageData.username)
       {
         setMessages((prevMessages) => [...prevMessages, messageData.messageData]);
       }
     });
 
     socket.on('typingRecived', (data) => {
-      if(localStorage.getItem('user') === data.friendName && friendId === data.userId)
+        console.log(data);
+      if(localStorage.getItem('user') === data.friendName && friendName === data.username)
       {
         setIsTyping(true);
         setTimeout(()=>setIsTyping(false) , 2000);
@@ -77,7 +79,7 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    socket.emit('typing', { friendName: friendName , userId : localStorage.getItem('userId')});
+    socket.emit('typing', { friendName: friendName , username : localStorage.getItem('user')});
     setMessageText(e.target.value);
   };
   
@@ -97,7 +99,7 @@ const MainChat = ({ friendId, friendName , onBack , showChat}: { friendId: Numbe
         sentAt: new Date(),
       };
 
-      socket.emit('sendMessage', {messageData , friendName : friendName , userId : localStorage.getItem('userId')});
+      socket.emit('sendMessage', {messageData , friendName : friendName , username : localStorage.getItem('user')});
       await sendMessage(friendId, messageText);
     } catch (err) {
       console.error('Message failed:', err);
